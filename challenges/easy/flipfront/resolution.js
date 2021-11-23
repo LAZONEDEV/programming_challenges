@@ -19,3 +19,4 @@ function flipFront(arr, val){
 // const inputArray = [2, 1, 3, 5, 3]
 
 // console.log(flipFront(inputArray, 2));
+
