@@ -1,6 +1,6 @@
 # Flipfront challenge
 
-Implement the flipfront function. Given an array of integers and a number n between 2 and the length of the array (inclusive), return the array with the order of the first n elements reversed.
+Implement the `flipfront` function. Given an array of integers and a number `n` between 2 and the length of the array (inclusive), return the array with the order of the first n elements reversed.
 ```
 flipfront([0, 1, 2, 3, 4], 2) => [1, 0, 2, 3, 4]
 flipfront([0, 1, 2, 3, 4], 3) => [2, 1, 0, 3, 4]
