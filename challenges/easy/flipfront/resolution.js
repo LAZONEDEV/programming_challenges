@@ -1,7 +1,6 @@
 function flipFront(arr, val){
-    const arrLimit = arr.length;
-    if(val >= arrLimit){
-        val = arrLimit;
+    if(val > arr.length){
+        val = arr.length;
     } else if( val < 2){
         return arr
     }
