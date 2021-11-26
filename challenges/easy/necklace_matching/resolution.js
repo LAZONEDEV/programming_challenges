@@ -1,7 +1,7 @@
 
 
 function same_necklace(necklace1, necklace2) {
-    let word2 = Array.from(necklace2);
+    let word2 = necklace2 ;
     let firstLetter;
         if( necklace1 === necklace2 ){
             return true;
@@ -10,10 +10,9 @@ function same_necklace(necklace1, necklace2) {
             return false;
         }
         for (let i = 0; i < necklace1.length; i++) {
-            firstLetter = word2[0];
-            word2.splice(0, 1);
-            word2.push(firstLetter);
-            if( necklace1 === word2.join("")){
+            firstLetter = word2.charAt(0);
+            word2 = word2.substr(1) + firstLetter;
+            if( necklace1 === word2 ){
                 return true
             } 
         }
