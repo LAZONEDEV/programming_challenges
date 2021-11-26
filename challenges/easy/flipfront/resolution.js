@@ -1,10 +1,10 @@
 function flipFront(arr, val){
-    if(val > arr.length){
-        val = arr.length;
-    } 
     if( val < 2){
         return arr
     }
+    if(val > arr.length){
+        val = arr.length;
+    } 
     // get front array
     const result = arr.slice(0, val).reverse()
 
