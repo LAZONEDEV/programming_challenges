@@ -1,24 +1,22 @@
 function additive_persistence(val) {
-    let result = {
-        counter : 0,
-        currSum : val
-    };
-    function sum(value){
-        result.counter ++;
+    let counter = 0;
+    let currSum = val;
+    function sum(value) {
+        counter ++;
         let acc = 0;
         const limit = Array.from(value.toString())
         for (let i = 0; i < limit.length; i++) {
             acc +=  parseInt(limit[i]);
         }
 
-        return result.currSum = acc
+        return currSum = acc
     }
-    do{
-         sum(result.currSum);
+    do {
+         sum(currSum);
     }
-    while(result.currSum > 9)  
+    while (currSum > 9)  
 
-    return result.counter
+    return counter
 }
 
 // console.log(additive_persistence(199));
@@ -26,35 +24,33 @@ function additive_persistence(val) {
 // Bonus
 
 function additive_persistence2(val) {
-    let result = {
-        counter : 0,
-        currSum : 0
-    }
+    let counter = 0;
+    let currSum = val;
     function getDigit() {
-       let digit = [];
-        let currVal =  result.counter !== 0 ? result.currSum : val
+        let digit = [];
+        let currVal =  counter !== 0 ? currSum : val
         while (currVal > 0 ) {
             digit.push(currVal % 10)
             currVal = Math.trunc(currVal / 10) ;
         } 
-        return result.currSum = digit.reverse()
+        return currSum = digit.reverse()
     }
      
-    function sum(value){
-        result.counter ++;
+    function sum(value) {
+        counter ++;
         let acc = 0;
-        for (let i = 0; i < value.length; i++) {
+        for(let i = 0; i < value.length; i++) {
             acc +=  value[i];
         }
-        return result.currSum = acc
+        return currSum = acc
     }
-    do{
+    do {
         getDigit();
-        sum(result.currSum);
+        sum(currSum);
     }
-    while(result.currSum > 9) 
+    while (currSum > 9) 
    
-    return result.counter
+    return counter
 }
 
 // console.log(additive_persistence2(199));
