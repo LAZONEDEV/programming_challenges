@@ -19,15 +19,13 @@ function same_necklace(necklace1, necklace2) {
     return false 
 }
 
-
  function repeats(necklace) {
-     let arr = Array.from(necklace);
+     let arr = necklace;
      let result = 0;
         for (let i = 0; i < necklace.length; i++) {
-            let firstLetter = arr[0];            
-            arr.splice(0,1);
-            arr.push(firstLetter);
-            if(necklace === arr.join("")){
+            let firstLetter = arr.charAt(0);            
+            arr = arr.substr(1) + firstLetter;;
+            if(necklace === arr){
                 result++;
             }
         }
