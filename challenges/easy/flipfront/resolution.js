@@ -5,14 +5,9 @@ function flipFront(arr, val){
     if(val > arr.length){
         val = arr.length;
     } 
-    // get front array
-    const result = arr.slice(0, val).reverse()
-
+    const frontArray = arr.slice(0, val).reverse()
     const backArray = arr.slice(val);
-
-    for (let i = 0; i < backArray.length ; i++) {
-         result.push(backArray[i]);
-    }
+    const result = frontArray.concat(backArray)
     return result
 }
 // const inputArray = [2, 1, 3, 5, 3]
