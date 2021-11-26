@@ -13,9 +13,9 @@ function nonogramrow(arr) {
     })
     if(case0){
         return result ;
-    }else if (case1){
-        result.push(limit)
-        return result; 
+    }
+    if (case1){
+        return result.push(limit); 
     }
 
     for (let i = 0; i < limit; i++) {
