@@ -4,21 +4,22 @@ function nonogramrow(arr) {
     let prev;
     let result = [];
 
-    for (let i = 0; i < limit; i++) {
-        prev =  i > 0 ? arr[i - 1] : 0;
-        if(arr[i] === 1){
+    arr.forEach((num, i) => {
+        prev = i > 0 ? arr[i - 1] : 0;
+        if (num === 1) {
             count++;
         } else {
-            if(prev === 1){
+            if (prev === 1) {
                 result.push(count);
             }
             count = 0;
         }
-        if(arr[i] === 1 && i === limit - 1 ) {
+        if (num === 1 && i === limit - 1) {
             result.push(count);
         }
-    }
+    });
+
     return result
 }
-        
+
 
