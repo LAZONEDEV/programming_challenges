@@ -76,5 +76,5 @@ function caesar_interpreter(val) {
 
 // console.log(caesar("Daily Programmer!", 6));
 // console.log(caesar("Zol abyulk tl puav h ulda.", 6));
-console.log(caesar_interpreter('Zol abyulk tl puav h ulda.'));
+// console.log(caesar_interpreter('Zol abyulk tl puav h ulda.'));
 
