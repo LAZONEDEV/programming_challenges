@@ -1,77 +1,60 @@
-const arr = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-function warmup(val, num){
-    function getValIndex(elt){
+const arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+function warmup(val, num) {
+    function getValIndex(elt) {
         for (let i = 0; i < arr.length; i++) {
-                if(elt === arr[i]){  
-                    return i
-                }else{
-                    if(elt.toLowerCase() === arr[i]){
-                        return  arr[getFinalIndex(i + num, arr.length - 1 )].toUpperCase()  
-                    }
+            if (elt === arr[i]) {
+                return i
+            } else {
+                if (elt.toLowerCase() === arr[i]) {
+                    const currIndex = getFinalIndex(i + num, arr.length - 1);
+                    return currIndex === -1 ? arr[arr.length - 1].toUpperCase() : arr[currIndex].toUpperCase();
                 }
+            }
         }
-        return elt
+
+        return elt;
     }
     function getFinalIndex(finalIndex, arrLimit) {
         return finalIndex === arrLimit ? finalIndex % arrLimit
-               : finalIndex > arrLimit ? ((finalIndex % arrLimit) - 1) 
-               : finalIndex
+            : finalIndex > arrLimit ? ((finalIndex % arrLimit) - 1)
+                : finalIndex
     }
-    const currentIndex =  (typeof getValIndex(val) === 'string') ? getValIndex(val) 
-                          : arr[getFinalIndex(getValIndex(val) + num, arr.length - 1 )]
+    const currentIndex = (typeof getValIndex(val) === 'string') ? getValIndex(val)
+        : arr[getFinalIndex(getValIndex(val) + num, arr.length - 1)]
 
     return currentIndex;
 }
 
 function caesar(val, num) {
-    if(num < 0 || num > 26) {
-        // Do some stuff
+    if (num < 0 || num > 26) {
         return null;
     }
-    const firstArg = Array.from(val);
     const box = [];
-    let curr;
-    for (let i = 0; i < firstArg.length; i++) {
-        curr = warmup(firstArg[i], num)
-        box.push(curr);
+    for (let i = 0; i < val.length; i++) {
+        box.push(warmup(val[i], num));
     }
     return box.join('');
 }
 
 function caesar_interpreter(val) {
-    const scoreRef = [3,-1,1,1,4,0,0,2,2,-5,-2,1,0,2,3,0,-6,2,2,3,1,-1,0,-5,0,-7];
+    const scoreRef = [3, -1, 1, 1, 4, 0, 0, 2, 2, -5, -2, 1, 0, 2, 3, 0, -6, 2, 2, 3, 1, -1, 0, -5, 0, -7];
     const inputLimit = 26;
-    let curr_shifted ;
-    let arr_box = [];
+    let curr_shifted;
     let max_score = 0;
     let result;
 
     for (let i = 0; i < inputLimit; i++) {
-        
         curr_shifted = caesar(val, i)
-        // console.log('curr_shifted', curr_shifted);
-        arr_box = Array.from(curr_shifted);
-        // console.log('arr_box', arr_box);
-
-        // max_score = getValScore(arr_box) > max_score ? getValScore(arr_box) : max_score;
-        if( getValScore(arr_box) > max_score) { 
-            max_score = getValScore(arr_box);
-        // console.log('max_score', max_score);
-
+        if (getValScore(curr_shifted) > max_score) {
+            max_score = getValScore(curr_shifted);
             result = curr_shifted;
-            console.log('result', result);
-
         }
-        // if(i === inputLimit - 1){
-        //     return result;
-        // }
     }
     function getAlphabetIndex(elt) {
         for (let i = 0; i < arr.length; i++) {
-                if(elt === arr[i]){ 
-                    // console.log('i',i); 
-                    return i
-                }
+            if (elt === arr[i]) {
+                return i;
+            }
         }
         return null
     }
@@ -79,34 +62,19 @@ function caesar_interpreter(val) {
         return scoreRef[index];
     }
     function getValScore(curr) {
-        let curr_score = 0; let average = 0; 
+        let curr_score = 0; let average = 0;
         for (let i = 0; i < curr.length; i++) {
-            // count = getCharScore(getAlphabetIndex(curr[i]) ) 
-            // curr_score += count;
-            if(getAlphabetIndex(curr[i]) !== null) {
-                curr_score += getCharScore(getAlphabetIndex(curr[i]) ) 
-                // console.log('curr_score', curr_score);
+            if (getAlphabetIndex(curr[i]) !== null) {
+                curr_score += getCharScore(getAlphabetIndex(curr[i]))
             }
-        // console.log('curr[i]', curr[i]);
-        // console.log('getAlphabetIndex', getAlphabetIndex(curr[i]));
-        // console.log('getCharScore', getCharScore(getAlphabetIndex(curr[i])));
-
-
         }
         average = curr_score / curr.length;
-        // console.log('average', Math.round(average));
-        
         return Math.round(average);
     }
-    console.log('last', result);
-   return result;
+    return result;
 }
 
 // console.log(caesar("Daily Programmer!", 6));
 // console.log(caesar("Zol abyulk tl puav h ulda.", 6));
-console.log(caesar_interpreter('Zol abyulk tl puav h ulda.'))
-
-
-
-
+console.log(caesar_interpreter('Zol abyulk tl puav h ulda.'));
 
