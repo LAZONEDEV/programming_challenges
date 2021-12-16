@@ -9,12 +9,9 @@ function nonogramrow(arr) {
             if (i === limit - 1) {
                 result.push(count);
             }
-        } else {
-            if (count !== 0) {
-                result.push(count);
-                count = 0;
-            }
-
+        } else if (count !== 0) {
+            result.push(count);
+            count = 0;
         }
     });
 
