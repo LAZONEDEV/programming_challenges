@@ -50,22 +50,11 @@ function caesar_interpreter(val) {
             result = curr_shifted;
         }
     }
-    function getAlphabetIndex(elt) {
-        for (let i = 0; i < arr.length; i++) {
-            if (elt === arr[i]) {
-                return i;
-            }
-        }
-        return null
-    }
-    function getCharScore(index) {
-        return scoreRef[index];
-    }
     function getValScore(curr) {
         let curr_score = 0; let average = 0;
         for (let i = 0; i < curr.length; i++) {
-            if (getAlphabetIndex(curr[i]) !== null) {
-                curr_score += getCharScore(getAlphabetIndex(curr[i]))
+            if (arr.indexOf(curr[i]) !== -1) {
+                curr_score += scoreRef[arr.indexOf(curr[i])];
             }
         }
         average = curr_score / curr.length;
