@@ -1,30 +1,30 @@
 const arr = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 function warmup(val, num) {
-    function getValIndex(elt) {
-        for (let i = 0; i < arr.length; i++) {
-            if (elt === arr[i]) {
-                return i
-            } else {
-                if (elt.toLowerCase() === arr[i]) {
-                    const currIndex = getFinalIndex(i + num, arr.length - 1);
-                    return currIndex === -1 ? arr[arr.length - 1].toUpperCase() : arr[currIndex].toUpperCase();
-                }
-            }
-        }
-
-        return elt;
+    const lowerCase = val.toLowerCase();
+    let isLowerCase;
+    if (val === lowerCase) {
+        isLowerCase = true;
+    } else {
+        isLowerCase = false;
     }
-    function getFinalIndex(finalIndex, arrLimit) {
-        return finalIndex === arrLimit ? finalIndex % arrLimit
-            : finalIndex > arrLimit ? ((finalIndex % arrLimit) - 1)
-                : finalIndex
-    }
-    const currentIndex = (typeof getValIndex(val) === 'string') ? getValIndex(val)
-        : arr[getFinalIndex(getValIndex(val) + num, arr.length - 1)]
 
-    return currentIndex;
+    const index = arr.indexOf(lowerCase);
+
+    if (index < 0) {
+        return val;
+    }
+
+    const encryptedLetterIndex = (index + num) < 25 ? index + num : (index + num) - 26;
+
+    if (!isLowerCase) {
+        return arr[encryptedLetterIndex].toUpperCase();
+    }
+    return arr[encryptedLetterIndex];
+
+
 }
 
+console.log(warmup('z', 1));
 function caesar(val, num) {
     if (num < 0 || num > 26) {
         return null;
